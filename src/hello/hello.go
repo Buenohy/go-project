@@ -3,8 +3,9 @@ package main
 import "fmt"
 
 func main() {
-		var nome string = "Gabriel"
-		var versao float32 = 1.1
-		fmt.Println("Olá, sr.", nome)
+		nome := "Gabriel"
+		idade := 23
+		versao := 1.1
+		fmt.Println("Olá, sr.", nome, "sua idade é", idade)
 		fmt.Println("Este programa está na versão", versao)
 }
