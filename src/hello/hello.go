@@ -51,6 +51,13 @@ func leComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando ...")
+	var sites [4]string
+	sites[0] = "https://www.alura.com.br"
+	sites[1] = "https://www.rocketseat.com.br"
+	sites[2] = "https://www.caelum.com.br"
+
+	fmt.Println(sites)
+
 	site := "https://www.alura.com.br"
 	resp, _ := http.Get(site)
 	
