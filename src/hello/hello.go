@@ -7,10 +7,9 @@ import (
 )
 
 func main() {
-	exibeNomes()
-	// exibeIntroducao()
+	exibeIntroducao()
 	for {
-		// exibeMenu()
+		exibeMenu()
 
 		comando := leComando()
 
@@ -52,14 +51,13 @@ func leComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando ...")
-	var sites [4]string
-	sites[0] = "https://www.alura.com.br"
-	sites[1] = "https://www.rocketseat.com.br"
-	sites[2] = "https://www.caelum.com.br"
+	sites := []string{"https://www.alura.com.br", "https://www.rocketseat.com.br", "https://www.caelum.com.br"}
 
+	// fmt.Println(sites)
 
-
-	fmt.Println(sites)
+	for i, site := range sites {
+		fmt.Println("Estou passando na posição", i, "do meu slice e essa posição tem o site:", site)
+	}
 
 	site := "https://www.alura.com.br"
 	resp, _ := http.Get(site)
@@ -69,11 +67,4 @@ func iniciarMonitoramento() {
 	} else {
 		fmt.Println("Site:", site, "esta com problemas. Status Code:", resp.StatusCode)
 	}
-}
-
-func exibeNomes() {
-	nomes := []string{"Gabriel", "Daniel", "Bernardo"}
-	nomes = append(nomes, "Aparecida")
-	fmt.Println(nomes)
-	fmt.Println("O meu slice tem", len(nomes))
 }
