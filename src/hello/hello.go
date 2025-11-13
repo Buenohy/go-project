@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -15,7 +16,7 @@ const delay = 5
 
 func main() {
 	exibeIntroducao()
-	registraLog("site-falso", false)
+	// registraLog("site-falso", false)
 	// leSitesDoArquivo()
 	for {
 		exibeMenu()
@@ -124,9 +125,12 @@ func leSitesDoArquivo() []string {
 }
 
 func registraLog(site string, status bool) {
-	arquivo, err := os.OpenFile("log.txt", os.O_RDWR|os.O_CREATE, 0666)
+	arquivo, err := os.OpenFile("log.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(arquivo)
+
+	arquivo.WriteString(site + " - online: " + strconv.FormatBool(status) + "\n")
+
+	arquivo.Close()
 }
