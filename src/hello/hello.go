@@ -15,7 +15,8 @@ const delay = 5
 
 func main() {
 	exibeIntroducao()
-	leSitesDoArquivo()
+	registraLog("site-falso", false)
+	// leSitesDoArquivo()
 	for {
 		exibeMenu()
 
@@ -87,8 +88,10 @@ func testaSite(site string) {
 
 	if resp.StatusCode == 200 {
 		fmt.Println("Site", site, "foi carregado com sucesso!")
+		registraLog(site, true)
 	} else {
 		fmt.Println("Site:", site, "esta com problemas. Status Code:", resp.StatusCode)
+		registraLog(site, false)
 	}
 }
 
@@ -118,4 +121,12 @@ func leSitesDoArquivo() []string {
 	arquivo.Close()
 
 	return sites
+}
+
+func registraLog(site string, status bool) {
+	arquivo, err := os.OpenFile("log.txt", os.O_RDWR|os.O_CREATE, 0666)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(arquivo)
 }
